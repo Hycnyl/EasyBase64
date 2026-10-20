@@ -7,7 +7,9 @@ English · [简体中文](README.md)
 
 A native file Base64 encoder and decoder for Android 12 and later. Process arbitrary files, select multiple inputs or scan a folder, and inspect each result. File contents are converted as streams.
 
-**Developers: Hycnyl**
+**Developer: [Hycnyl](https://github.com/Hycnyl)**
+
+**Current source version: 1.1.0 (versionCode 3).** See the [source update note](docs/UPDATE_1.1.0.md). The maintainer will publish the signed APK and Release assets separately.
 
 ## Features
 
@@ -22,6 +24,8 @@ A native file Base64 encoder and decoder for Android 12 and later. Process arbit
 Base64 is an encoding, not encryption. CERTIFICATE wrapping is textual packaging and does not establish that the content is a valid certificate.
 
 ## Screenshots
+
+These images illustrate an earlier UI layout. In 1.1.0, **Format options** appears before **Output folder**.
 
 | English · Light | Simplified Chinese · Dark |
 | --- | --- |
@@ -46,11 +50,11 @@ sha256sum EasyBase64-1.1.0-universal.apk
 "$ANDROID_HOME/build-tools/37.0.0/apksigner" verify --verbose --print-certs EasyBase64-1.1.0-universal.apk
 ```
 
-The existing release's certificate fingerprint and APK verification records are in the [test report](docs/TEST_RESULTS.md). **An in-place update must use the same signing key as the installed version.** Debug or self-signed builds may use a different certificate and cannot directly replace the original release.
+Previous release signature details are preserved in the [historical test report](docs/TEST_RESULTS.md). **Version 1.1.0 uses a new application ID and cannot replace an installed 1.0.x app even when signed by the same key.** Keep the old app's data and reauthorize folders in the new one.
 
 ## Use
 
-1. Select **Encode** or **Decode**, then choose an output folder.
+1. Select **Encode** or **Decode**, review **Format options**, then choose an output folder.
 2. Use **Add files** to select multiple inputs, or choose a folder. Enable **Include subfolders** for recursive scanning. An output folder must be selected before scanning an input folder.
 3. Review the queue and **Format options**, remove unwanted files, and start processing.
 4. Inspect results in the queue. Select a file to view its full name, URIs, errors and attempt history. Open the output folder when the batch finishes.
@@ -128,6 +132,8 @@ Without signing configuration, a release APK does not automatically receive the 
 
 ## Tests and verification scope
 
+**Version scope:** The detailed test counts below are historical and must not be read as newly executed 1.1.0 regression tests. Version 1.1.0 previously underwent offline build, APK identity/signature checks, and limited emulator UI smoke checks; the full JVM, Lint and instrumentation suites were not rerun. This GitHub source-only push verified source consistency, not a fresh APK build.
+
 ```sh
 ./gradlew :core:test :data:testDebugUnitTest :app:testDebugUnitTest \
   :data:lintDebug :app:lintDebug :app:assembleDebug
@@ -141,9 +147,9 @@ Without signing configuration, a release APK does not automatically receive the 
 
 The system document-picker fixture expects English system UI. App UI tests explicitly exercise English and Simplified Chinese. Use a dedicated test emulator.
 
-Recorded verification includes 17 core JVM tests, 3 storage naming JVM tests, Android storage/UI instrumentation, a real local SAF provider round trip, and **installation plus UI, foreground-service and file round-trip smoke tests of the actual signed release APK**. Streaming encode/decode and independent SHA-256 comparisons passed for 16 MiB and 1 GiB files on the JVM. App Lint has no errors; retained warnings are documented. The app JVM test task is `NO-SOURCE`; UI checks run as Android instrumentation tests.
+Earlier-version verification includes 17 core JVM tests, 3 storage naming JVM tests, Android storage/UI instrumentation, a real local SAF provider round trip, and **installation plus UI, foreground-service and file round-trip smoke tests of the actual signed release APK**. Streaming encode/decode and independent SHA-256 comparisons passed for 16 MiB and 1 GiB files on the JVM. App Lint has no errors; retained warnings are documented. The app JVM test task is `NO-SOURCE`; UI checks run as Android instrumentation tests.
 
-Android device verification used an API 31 x86_64 emulator, including phone, low-height landscape, large-font and wide-window layouts. **Physical ARM / ARM64 phones, cloud providers, foldable hardware and every Android version have not been tested.** The JVM benchmark is not an Android SAF throughput claim. Consult the [test report](docs/TEST_RESULTS.md) and [core test record](docs/CORE_TEST_RESULTS.md) for exact tested revisions, subsequent regression runs and limitations.
+Earlier-version Android device verification used an API 31 x86_64 emulator, including phone, low-height landscape, large-font and wide-window layouts. **Physical ARM / ARM64 phones, cloud providers, foldable hardware and every Android version have not been tested.** The JVM benchmark is not an Android SAF throughput claim. Consult the [test report](docs/TEST_RESULTS.md) and [core test record](docs/CORE_TEST_RESULTS.md) for exact tested revisions, subsequent regression runs and limitations.
 
 ## Privacy and limitations
 
@@ -162,6 +168,7 @@ This release does not include a text workspace, whole-file preview, share target
 | `core/` | Pure Kotlin/JVM streaming codec, format contract and tests |
 | `data/` | SAF, Room queue/attempt records, commit, cancellation and cleanup |
 | `app/` | Compose UI, adaptive layouts, system pickers and foreground service |
+| [1.1.0 source update note](docs/UPDATE_1.1.0.md) | App identity change, version metadata and verification scope |
 | [Design specification](docs/DEVELOPMENT_DESIGN.md) | Original development requirements |
 | [Implementation decisions](docs/IMPLEMENTATION_NOTES.md) | Architecture and implementation choices |
 | [Test report](docs/TEST_RESULTS.md) | Executed checks and limitations |
