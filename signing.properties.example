@@ -1,0 +1,5 @@
+# Maintainer-only local template. Never commit a filled signing.properties.
+storeFile=signing/easybase64-delivery.jks
+storePassword=REPLACE_LOCALLY
+keyAlias=easybase64
+keyPassword=REPLACE_LOCALLY

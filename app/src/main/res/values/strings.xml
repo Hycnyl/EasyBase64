@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">EasyBase64</string>
+    <string name="notification_channel">File processing</string>
+    <string name="notification_title">EasyBase64 is processing files</string>
+    <string name="notification_cancel">Cancel</string>
+    <string name="notification_preparing">Preparing your batch…</string>
+</resources>

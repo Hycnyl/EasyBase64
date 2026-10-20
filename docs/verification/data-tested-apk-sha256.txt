@@ -1,0 +1,2 @@
+d21fc61d2127dcf2645188eda789b2db8edd048e7192882f887f7dccf0d0ffbb  data/build/outputs/apk/androidTest/debug/data-debug-androidTest.apk
+Final rebuilt APK used for the complete15-test storage suite.

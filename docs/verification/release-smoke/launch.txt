@@ -1,0 +1,7 @@
+Starting: Intent { cmp=com.orbis.easybase64/.MainActivity }
+Status: ok
+LaunchState: COLD
+Activity: com.orbis.easybase64/.MainActivity
+TotalTime: 6733
+WaitTime: 6924
+Complete

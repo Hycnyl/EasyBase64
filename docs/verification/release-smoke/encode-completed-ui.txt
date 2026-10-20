@@ -1,0 +1,21 @@
+Decode |  | [378,185][441,212] | true
+Encode |  | [135,185][196,212] | true
+Add files |  | [126,271][200,298] | true
+Folder |  | [387,271][440,298] | true
+Output folder |  | [95,359][192,380] | true
+Download/EasyBase64Smoke/Encoded |  | [95,380][422,407] | true
+A new batch subfolder is created here |  | [95,407][367,428] | true
+ | Select output folder | [461,378][493,410] | true
+Format options |  | [95,491][220,518] | true
+Standard · padding · no wrap |  | [95,518][298,539] | true
+File queue |  | [26,586][126,618] | true
+1 files · 1 completed |  | [26,618][174,639] | true
+Clear |  | [453,599][498,626] | true
+sample.bin |  | [92,683][203,700] | true
+EasyBase64 |  | [102,82][255,119] | true
+FILES, SIMPLY CONVERTED |  | [102,119][292,140] | true
+ | Settings and about | [467,95][499,127] | true
+All files completed |  | [26,716][476,737] | true
+1/1 |  | [487,716][514,737] | true
+ | Open output folder | [58,768][90,800] | true
+Start encoding |  | [283,771][404,798] | true

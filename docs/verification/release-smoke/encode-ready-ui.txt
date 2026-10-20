@@ -1,0 +1,19 @@
+Files, transformed. |  | [26,169][328,217] | true
+Encode or decode with full control. |  | [26,225][308,252] | true
+Decode |  | [378,291][441,318] | true
+Encode |  | [135,291][196,318] | true
+Add files |  | [126,377][200,404] | true
+Folder |  | [387,377][440,404] | true
+Output folder |  | [95,465][192,486] | true
+Download/EasyBase64Smoke/Encoded |  | [95,486][422,513] | true
+A new batch subfolder is created here |  | [95,513][367,534] | true
+ | Select output folder | [461,484][493,516] | true
+Format options |  | [95,597][220,624] | true
+Standard · padding · no wrap |  | [95,624][298,645] | true
+File queue |  | [26,692][126,724] | true
+1 files · 0 completed |  | [26,724][174,734] | true
+Clear |  | [453,705][498,732] | true
+EasyBase64 |  | [102,82][255,119] | true
+FILES, SIMPLY CONVERTED |  | [102,119][292,140] | true
+ | Settings and about | [467,95][499,127] | true
+Start encoding |  | [228,771][349,798] | true

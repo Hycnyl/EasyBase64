@@ -1,0 +1,27 @@
+.gradle/
+.kotlin/
+**/build/
+local.properties
+*.jks
+*.keystore
+signing.properties
+.idea/
+*.iml
+signing/
+.toolchains/
+
+# Local delivery outputs and all private signing archives
+deliverables/
+github-share/
+*signing-private*
+*delivery.zip
+SIGNING-PRIVATE.txt
+*.apk
+*.aab
+*.bundle
+*.zip
+*.part[0-9]*
+*.pem.key
+*.p12
+*.pfx
+*.key

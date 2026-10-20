@@ -1,0 +1,34 @@
+Encode |  | [135,121][173,127] | true
+Decode |  | [389,121][428,127] | true
+Add files |  | [130,163][175,179] | true
+Folder |  | [395,163][428,179] | true
+Output folder |  | [58,217][116,230] | true
+Download/EasyBase64Smoke/Decoded |  | [58,230][260,246] | true
+A new batch subfolder is created here |  | [58,246][222,259] | true
+ | Select output folder | [494,229][513,248] | true
+File queue |  | [16,288][74,308] | true
+1 files · 1 completed |  | [16,308][104,321] | true
+Clear |  | [488,296][516,312] | true
+sample.bin.b64 |  | [56,347][145,367] | true
+Completed · 85.3 KiB |  | [56,370][146,383] | true
+Read 85.3 KiB · Wrote 64.0 KiB |  | [56,386][180,399] | true
+ | File details | [499,365][515,381] | true
+New batch folder · Originals preserved · No overwrites |  | [35,423][251,431] | true
+File details |  | [555,152][890,172] | true
+ | Close details | [900,153][919,172] | true
+sample.bin.b64 |  | [555,197][675,220] | true
+Completed |  | [577,231][633,247] | true
+Source size |  | [555,258][607,271] | true
+85.3 KiB |  | [555,273][599,289] | true
+Progress |  | [555,300][596,313] | true
+Read 85.3 KiB · Wrote 64.0 KiB |  | [555,315][713,331] | true
+Source URI |  | [555,342][605,355] | true
+content://com.android.externalstorage.documents/document/primary%3ADownload%2FEasyBase64Smoke%2FEncoded%2FEasyBase64-20261020-025827-deeeaf05%2Fsample.bin.b64 |  | [555,357][928,405] | true
+Saved as |  | [555,416][595,418] | true
+EasyBase64 |  | [63,74][158,97] | true
+FILES, SIMPLY CONVERTED |  | [63,97][173,110] | true
+ | Settings and about | [916,83][935,102] | true
+All files completed |  | [16,441][921,454] | true
+1/1 |  | [927,441][944,454] | true
+ | Open output folder | [35,474][54,493] | true
+Start decoding |  | [486,475][562,491] | true

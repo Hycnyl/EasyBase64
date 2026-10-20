@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.orbis.easybase64.data.StorageNamesTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-10-20T02:45:42.505Z" hostname="a9d0e474e3e8" time="0.067">
+  <properties/>
+  <testcase name="pathsAreAlwaysSingleSafeComponents" classname="com.orbis.easybase64.data.StorageNamesTest" time="0.012"/>
+  <testcase name="numberingPreservesExtensionAndDoesNotReuseNames" classname="com.orbis.easybase64.data.StorageNamesTest" time="0.036"/>
+  <testcase name="decodingNeverGuessesAnExtensionAndHandlesEmptyStem" classname="com.orbis.easybase64.data.StorageNamesTest" time="0.003"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

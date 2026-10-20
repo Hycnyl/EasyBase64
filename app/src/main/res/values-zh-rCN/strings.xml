@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">EasyBase64</string>
+    <string name="notification_channel">文件处理</string>
+    <string name="notification_title">EasyBase64 正在处理文件</string>
+    <string name="notification_cancel">取消</string>
+    <string name="notification_preparing">正在准备批次…</string>
+</resources>

@@ -1,0 +1,17 @@
+Files, transformed. |  | [26,169][328,217] | true
+Encode or decode with full control. |  | [26,225][308,252] | true
+Decode |  | [378,291][441,318] | true
+Encode |  | [135,291][196,318] | true
+Add files |  | [126,377][200,404] | true
+Folder |  | [387,377][440,404] | true
+Output folder |  | [95,465][192,486] | true
+Choose where files are saved |  | [95,486][337,513] | true
+ | Select output folder | [461,473][493,505] | true
+Format options |  | [95,576][220,603] | true
+Standard · padding · no wrap |  | [95,603][298,624] | true
+File queue |  | [26,666][126,698] | true
+Any file type. One safe batch. |  | [26,698][236,719] | true
+EasyBase64 |  | [102,82][255,119] | true
+FILES, SIMPLY CONVERTED |  | [102,119][292,140] | true
+ | Settings and about | [467,95][499,127] | true
+Start encoding |  | [228,771][349,798] | true

@@ -1,0 +1,20 @@
+{
+  "passed": true,
+  "source_unchanged": true,
+  "residual_files": [],
+  "source": {
+    "path": "Input/sample.bin",
+    "bytes": 65537,
+    "sha256": "42d4633950ee3f4fe2d552dfba382d43488496b046832f15969fd3b8c4b944e0"
+  },
+  "encoded": {
+    "path": "Encoded/EasyBase64-20261020-025827-deeeaf05/sample.bin.b64",
+    "bytes": 87384,
+    "sha256": "897ac5cba01d8aa59cfc731451b5f6425c684d9e2d3975088b06ba050b92c7de"
+  },
+  "decoded": {
+    "path": "Decoded/EasyBase64-20261020-030155-f9e281d8/sample.bin",
+    "bytes": 65537,
+    "sha256": "42d4633950ee3f4fe2d552dfba382d43488496b046832f15969fd3b8c4b944e0"
+  }
+}

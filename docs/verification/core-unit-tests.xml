@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.orbis.easybase64.core.Base64CodecTest" tests="17" skipped="0" failures="0" errors="0" timestamp="2026-10-20T02:44:21.480Z" hostname="a9d0e474e3e8" time="0.892">
+  <properties/>
+  <testcase name="failuresReportFinalBytesWithoutMaskingTheOriginalError" classname="com.orbis.easybase64.core.Base64CodecTest" time="0.04"/>
+  <testcase name="neverMixAlphabets" classname="com.orbis.easybase64.core.Base64CodecTest" time="0.003"/>
+  <testcase name="rfc4648Vectors" classname="com.orbis.easybase64.core.Base64CodecTest" time="0.006"/>
+  <testcase name="fullEofValidatedAfterPadding" classname="com.orbis.easybase64.core.Base64CodecTest" time="0.007"/>
+  <testcase name="canonicalPaddingAndOmittedPadding" classname="com.orbis.easybase64.core.Base64CodecTest" time="0.011"/>
+  <testcase name="oneByteAndIrregularShortReadsCrossEveryBoundary" classname="com.orbis.easybase64.core.Base64CodecTest" time="0.079"/>
+  <testcase name="certificateEncodingIsExactAndForcesContract" classname="com.orbis.easybase64.core.Base64CodecTest" time="0.021"/>
+  <testcase name="arbitraryUnwrappedLineHasNoLineLengthLimit" classname="com.orbis.easybase64.core.Base64CodecTest" time="0.129"/>
+  <testcase name="malformedOrMultipleBlocksRejected" classname="com.orbis.easybase64.core.Base64CodecTest" time="0.01"/>
+  <testcase name="progressUsesRawBytesAndFinalOutputLength" classname="com.orbis.easybase64.core.Base64CodecTest" time="0.002"/>
+  <testcase name="failuresAndCancellationPropagateAndOwnershipIsPreserved" classname="com.orbis.easybase64.core.Base64CodecTest" time="0.013"/>
+  <testcase name="decodedTailsAroundThreeByteAlignedReadBoundariesMatchArrayOracle" classname="com.orbis.easybase64.core.Base64CodecTest" time="0.133"/>
+  <testcase name="providerWritesAreBufferedIncludingScalarTailAndCertificateFormatting" classname="com.orbis.easybase64.core.Base64CodecTest" time="0.01"/>
+  <testcase name="whitespaceAndEnvelopeControlsAreIndependent" classname="com.orbis.easybase64.core.Base64CodecTest" time="0.004"/>
+  <testcase name="bomOnlyAtPhysicalStartAndSupportedEncoding" classname="com.orbis.easybase64.core.Base64CodecTest" time="0.0"/>
+  <testcase name="characterErrorsReportPhysicalByteOffsets" classname="com.orbis.easybase64.core.Base64CodecTest" time="0.001"/>
+  <testcase name="allEncodingOptionsMatchIndependentReference" classname="com.orbis.easybase64.core.Base64CodecTest" time="0.417"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

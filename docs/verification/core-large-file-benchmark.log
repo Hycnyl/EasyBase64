@@ -1,0 +1,31 @@
+Starting a Gradle Daemon, 6 stopped Daemons could not be reused, use --status for details
+> Task :core:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :core:processResources NO-SOURCE
+> Task :core:processTestResources NO-SOURCE
+> Task :core:compileKotlin
+> Task :core:compileJava NO-SOURCE
+> Task :core:classes UP-TO-DATE
+> Task :core:jar
+> Task :core:compileTestKotlin
+> Task :core:compileTestJava NO-SOURCE
+> Task :core:testClasses UP-TO-DATE
+> Task :core:test
+
+> Task :core:largeFileBenchmark
+JVM=21.0.12.1 OS=Linux amd64
+processors=4 heapMax=268435456 bufferBytes=65536
+sizeBytes,sourceSha256,recoveredSha256,encodeSeconds,decodeSeconds,peakSampledHeapBytes,heapCommittedBytes
+16777216,9dbcf559fc3387a096b2f849b3949fec0d4bdf2af230af33e7b9a5032f1fef33,9dbcf559fc3387a096b2f849b3949fec0d4bdf2af230af33e7b9a5032f1fef33,0.067137622,0.24055253,3212512,17825792
+1073741824,dca252499f6bfa02d9d16ecaf7e8efc17aab184afe155607bfae22c7d698a949,dca252499f6bfa02d9d16ecaf7e8efc17aab184afe155607bfae22c7d698a949,1.946900808,21.047938171,2359528,8388608
+
+[Incubating] Problems report is available at: file:///workspace/EasyBase64/build/reports/problems/problems-report.html
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 10.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/9.8.2/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD SUCCESSFUL in 45s
+5 actionable tasks: 5 executed
+Consider enabling configuration cache to speed up this build: https://docs.gradle.org/9.8.2/userguide/configuration_cache_enabling.html

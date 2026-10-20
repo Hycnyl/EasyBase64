@@ -1,0 +1,189 @@
+/workspace/EasyBase64/app/build.gradle.kts:13: Warning: Not targeting the latest versions of Android; compatibility modes apply. Consider testing and updating this version. Consult the android.os.Build.VERSION_CODES javadoc for details. [OldTargetApi]
+        targetSdk = 36
+        ~~~~~~~~~~~~~~
+
+   Explanation for issues of type "OldTargetApi":
+   When your application or sdk runs on a version of Android that is more
+   recent than your targetSdk specifies that it has been tested with, various
+   compatibility modes kick in. This ensures that your application continues
+   to work, but it may look out of place. For example, if the targetSdk is
+   less than 14, your app may get an option button in the UI.
+
+   To fix this issue, set the targetSdk to the highest available value. Then
+   test your app to make sure everything works correctly. You may want to
+   consult the compatibility notes to see what changes apply to each version
+   you are adding support for:
+   https://developer.android.com/reference/android/os/Build.VERSION_CODES.html
+   as well as follow this guide:
+   https://developer.android.com/distribute/best-practices/develop/target-sdk.
+   html
+
+   https://developer.android.com/distribute/best-practices/develop/target-sdk.html
+
+/workspace/EasyBase64/app/src/main/AndroidManifest.xml:13: Warning: Attribute localeConfig is only used in API level 33 and higher (current min is 31) [UnusedAttribute]
+        android:localeConfig="@xml/locales_config"
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "UnusedAttribute":
+   This check finds attributes set in XML files that were introduced in a
+   version newer than the oldest version targeted by your application (with
+   the minSdkVersion attribute).
+
+   This is not an error; the application will simply ignore the attribute.
+   However, if the attribute is important to the appearance or functionality
+   of your application, you should consider finding an alternative way to
+   achieve the same result with only available attributes, and then you can
+   optionally create a copy of the layout in a layout-vNN folder which will be
+   used on API NN or higher where you can take advantage of the newer
+   attribute.
+
+   Note: This check does not only apply to attributes. For example, some tags
+   can be unused too, such as the new <tag> element in layouts introduced in
+   API 21.
+
+/workspace/EasyBase64/app/build.gradle.kts:60: Warning: A newer version of androidx.test.uiautomator:uiautomator than 2.3.0 is available: 2.4.0 [GradleDependency]
+    androidTestImplementation("androidx.test.uiautomator:uiautomator:2.3.0")
+                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "GradleDependency":
+   This detector looks for usages of libraries where the version you are using
+   is not the current stable release. Using older versions is fine, and there
+   are cases where you deliberately want to stick with an older version.
+   However, you may simply not be aware that a more recent version is
+   available, and that is what this lint check helps find.
+
+/workspace/EasyBase64/app/src/main/res/mipmap-anydpi-v26: Warning: This folder configuration (v26) is unnecessary; minSdkVersion is 31. Merge all the resources in this folder into mipmap-anydpi. [ObsoleteSdkInt]
+
+   Explanation for issues of type "ObsoleteSdkInt":
+   This check flags version checks that are not necessary, because the
+   minSdkVersion (or surrounding known API level) is already at least as high
+   as the version checked for.
+
+   Similarly, it also looks for resources in -vNN folders, such as values-v14
+   where the version qualifier is less than or equal to the minSdkVersion,
+   where the contents should be merged into the best folder.
+
+/workspace/EasyBase64/app/src/main/res/values/strings.xml:3: Warning: The resource R.string.notification_channel appears to be unused [UnusedResources]
+    <string name="notification_channel">File processing</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/workspace/EasyBase64/app/src/main/res/values/strings.xml:4: Warning: The resource R.string.notification_title appears to be unused [UnusedResources]
+    <string name="notification_title">EasyBase64 is processing files</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~~
+/workspace/EasyBase64/app/src/main/res/values/strings.xml:5: Warning: The resource R.string.notification_cancel appears to be unused [UnusedResources]
+    <string name="notification_cancel">Cancel</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~
+/workspace/EasyBase64/app/src/main/res/values/strings.xml:6: Warning: The resource R.string.notification_preparing appears to be unused [UnusedResources]
+    <string name="notification_preparing">Preparing your batch…</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "UnusedResources":
+   Unused resources make applications larger and slow down builds.
+
+
+   The unused resource check can ignore tests. If you want to include
+   resources that are only referenced from tests, consider packaging them in a
+   test source set instead.
+
+   You can include test sources in the unused resource check by setting the
+   system property lint.unused-resources.include-tests=true, and to exclude
+   them (usually for performance reasons), use
+   lint.unused-resources.exclude-tests=true.
+
+   Available options:
+
+   **skip-libraries** (default is true):
+   Whether the unused resource check should skip reporting unused resources in libraries.
+
+   Many libraries will declare resources that are part of the library surface; other modules depending on the library will also reference the resources. To avoid reporting all these resources as unused (in the context of a library), the unused resource check normally skips reporting unused resources in libraries. Instead, run the unused resource check on the consuming app module (along with `checkDependencies=true`).
+
+   However, there are cases where you want to check that all the resources declared in a library are used; in that case, you can disable the skip option.
+
+   To configure this option, use a `lint.xml` file with an <option> like this:
+
+   ```xml
+   <lint>
+       <issue id="UnusedResources">
+           <option name="skip-libraries" value="true" />
+       </issue>
+   </lint>
+   ```
+
+/workspace/EasyBase64/app/src/main/java/com/orbis/easybase64/ui/EasyBase64App.kt:266: Warning: Use the KTX extension function SharedPreferences.edit instead? [UseKtx]
+                onLanguage = { language = it; prefs.edit().putString("language", it).apply() },
+                                              ~~~~~~~~~~~~
+/workspace/EasyBase64/app/src/main/java/com/orbis/easybase64/ui/EasyBase64App.kt:267: Warning: Use the KTX extension function SharedPreferences.edit instead? [UseKtx]
+                onTheme = { theme = it; prefs.edit().putString("theme", it).apply() },
+                                        ~~~~~~~~~~~~
+/workspace/EasyBase64/app/src/main/java/com/orbis/easybase64/ui/EasyBase64App.kt:277: Warning: Use the KTX extension function SharedPreferences.edit instead? [UseKtx]
+                            recursive = it; prefs.edit().putBoolean("recursive", it).apply()
+                                            ~~~~~~~~~~~~
+/workspace/EasyBase64/app/src/main/java/com/orbis/easybase64/ui/EasyBase64App.kt:601: Warning: Use the KTX extension function String.toUri instead? [UseKtx]
+    Uri.decode(Uri.parse(value).lastPathSegment ?: value).substringAfter(":", Uri.decode(Uri.parse(value).lastPathSegment ?: value))
+               ~~~~~~~~~~~~~~~~
+/workspace/EasyBase64/app/src/main/java/com/orbis/easybase64/ui/EasyBase64App.kt:601: Warning: Use the KTX extension function String.toUri instead? [UseKtx]
+    Uri.decode(Uri.parse(value).lastPathSegment ?: value).substringAfter(":", Uri.decode(Uri.parse(value).lastPathSegment ?: value))
+                                                                                         ~~~~~~~~~~~~~~~~
+/workspace/EasyBase64/app/src/main/java/com/orbis/easybase64/ui/EasyBase64App.kt:616: Warning: Use the KTX extension function SharedPreferences.edit instead? [UseKtx]
+    prefs.edit().putString("operation", options.operation.name).putString("alphabet", options.alphabet.name)
+    ~~~~~~~~~~~~
+/workspace/EasyBase64/app/src/main/java/com/orbis/easybase64/MainActivity.kt:78: Warning: Use the KTX extension function String.toUri instead? [UseKtx]
+        if (uri != null && root != null) lifecycleScope.launch { repository.scanTree(uri, Uri.parse(root), recursive) }
+                                                                                          ~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "UseKtx":
+   The Android KTX libraries decorates the Android platform SDK as well as
+   various libraries with more convenient extension functions available from
+   Kotlin, allowing you to use default parameters, named parameters, and
+   more.
+
+   Available options:
+
+   **remove-defaults** (default is true):
+   Whether to skip arguments that match the defaults provided by the extension.
+
+   Extensions often provide default values for some of the parameters. For example:
+   ```kotlin
+   fun Path.readLines(charset: Charset = Charsets.UTF_8): List<String> { return Files.readAllLines(this, charset) }
+   ```
+   This lint check will by default automatically omit parameters that match the default, so if your code was calling
+
+   ```kotlin
+   Files.readAllLines(file, Charset.UTF_8)
+   ```
+   lint would replace this with
+   ```kotlin
+   file.readLines()
+   ```
+   rather than
+
+   ```kotlin
+   file.readLines(Charset.UTF_8
+   ```
+   You can turn this behavior off using this option.
+
+   To configure this option, use a `lint.xml` file with an <option> like this:
+
+   ```xml
+   <lint>
+       <issue id="UseKtx">
+           <option name="remove-defaults" value="true" />
+       </issue>
+   </lint>
+   ```
+
+   **require-present** (default is true):
+   Whether to only offer extensions already available.
+
+   This option lets you only have lint suggest extension replacements if those extensions are already available on the class path (in other words, you're already depending on the library containing the extension method.)
+
+   To configure this option, use a `lint.xml` file with an <option> like this:
+
+   ```xml
+   <lint>
+       <issue id="UseKtx">
+           <option name="require-present" value="true" />
+       </issue>
+   </lint>
+   ```
+
+0 errors, 15 warnings

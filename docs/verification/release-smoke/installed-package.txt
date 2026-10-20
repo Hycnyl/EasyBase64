@@ -1,0 +1,180 @@
+Activity Resolver Table:
+  Non-Data Actions:
+      android.intent.action.MAIN:
+        476d8b com.orbis.easybase64/.MainActivity filter 64c2e68
+          Action: "android.intent.action.MAIN"
+          Category: "android.intent.category.LAUNCHER"
+
+Receiver Resolver Table:
+  Non-Data Actions:
+      androidx.profileinstaller.action.SAVE_PROFILE:
+        103a281 com.orbis.easybase64/androidx.profileinstaller.ProfileInstallReceiver filter 2e9c914
+          Action: "androidx.profileinstaller.action.SAVE_PROFILE"
+      androidx.profileinstaller.action.INSTALL_PROFILE:
+        103a281 com.orbis.easybase64/androidx.profileinstaller.ProfileInstallReceiver filter ad5af26
+          Action: "androidx.profileinstaller.action.INSTALL_PROFILE"
+      androidx.profileinstaller.action.SKIP_FILE:
+        103a281 com.orbis.easybase64/androidx.profileinstaller.ProfileInstallReceiver filter 5bd5767
+          Action: "androidx.profileinstaller.action.SKIP_FILE"
+      androidx.profileinstaller.action.BENCHMARK_OPERATION:
+        103a281 com.orbis.easybase64/androidx.profileinstaller.ProfileInstallReceiver filter 246e5bd
+          Action: "androidx.profileinstaller.action.BENCHMARK_OPERATION"
+
+Domain verification status:
+
+Permissions:
+  Permission [com.orbis.easybase64.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION] (d07b36):
+    sourcePackage=com.orbis.easybase64
+    uid=10108 gids=[] type=0 prot=signature
+    perm=PermissionInfo{131a37 com.orbis.easybase64.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION}
+
+Registered ContentProviders:
+  com.orbis.easybase64/androidx.startup.InitializationProvider:
+    Provider{7a91ba4 com.orbis.easybase64/androidx.startup.InitializationProvider}
+
+ContentProvider Authorities:
+  [com.orbis.easybase64.androidx-startup]:
+    Provider{7a91ba4 com.orbis.easybase64/androidx.startup.InitializationProvider}
+      applicationInfo=ApplicationInfo{e44ed0d com.orbis.easybase64}
+
+Key Set Manager:
+  [com.orbis.easybase64]
+      Signing KeySets: 10
+
+Packages:
+  Package [com.orbis.easybase64] (8a114c2):
+    userId=10108
+    pkg=Package{f522d3 com.orbis.easybase64}
+    codePath=/data/app/~~2wN51vWlTg-s8s0uzuIyVA==/com.orbis.easybase64-5-ej7OtGRT2zljrbIslWPQ==
+    resourcePath=/data/app/~~2wN51vWlTg-s8s0uzuIyVA==/com.orbis.easybase64-5-ej7OtGRT2zljrbIslWPQ==
+    legacyNativeLibraryDir=/data/app/~~2wN51vWlTg-s8s0uzuIyVA==/com.orbis.easybase64-5-ej7OtGRT2zljrbIslWPQ==/lib
+    extractNativeLibs=false
+    primaryCpuAbi=x86_64
+    secondaryCpuAbi=null
+    cpuAbiOverride=null
+    versionCode=1 minSdk=31 targetSdk=36
+    minExtensionVersions=[]
+    versionName=1.0.0
+    usesNonSdkApi=false
+    splits=[base]
+    apkSigningVersion=2
+    applicationInfo=PackageImpl{f522d3 com.orbis.easybase64}
+    flags=[ HAS_CODE ALLOW_CLEAR_USER_DATA ]
+    privateFlags=[ PRIVATE_FLAG_ACTIVITIES_RESIZE_MODE_RESIZEABLE_VIA_SDK_VERSION ALLOW_AUDIO_PLAYBACK_CAPTURE PARTIALLY_DIRECT_BOOT_AWARE PRIVATE_FLAG_ALLOW_NATIVE_HEAP_POINTER_TAGGING ]
+    forceQueryable=false
+    queriesPackages=[]
+    dataDir=/data/user/0/com.orbis.easybase64
+    supportsScreens=[small, medium, large, xlarge, resizeable, anyDensity]
+    usesOptionalLibraries:
+      androidx.window.extensions
+      androidx.window.sidecar
+    usesLibraryFiles:
+      /system_ext/framework/androidx.window.sidecar.jar
+    timeStamp=2026-10-20 02:52:57
+    firstInstallTime=2026-10-20 02:52:58
+    lastUpdateTime=2026-10-20 02:52:58
+    signatures=PackageSignatures{b2e4e10 version:2, signatures:[a688a7dc], past signatures:[]}
+    installPermissionsFixed=true
+    pkgFlags=[ HAS_CODE ALLOW_CLEAR_USER_DATA ]
+    declared permissions:
+      com.orbis.easybase64.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION: prot=signature, INSTALLED
+    requested permissions:
+      android.permission.FOREGROUND_SERVICE
+      android.permission.FOREGROUND_SERVICE_DATA_SYNC
+      android.permission.POST_NOTIFICATIONS
+      com.orbis.easybase64.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+    install permissions:
+      android.permission.FOREGROUND_SERVICE: granted=true
+      com.orbis.easybase64.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION: granted=true
+    User 0: ceDataInode=123324 installed=true hidden=false suspended=false distractionFlags=0 stopped=false notLaunched=false enabled=0 instant=false virtual=false
+      runtime permissions:
+
+Queries:
+  system apps queryable: false
+  queries via package name:
+  queries via intent:
+  queryable via interaction:
+    User 0:
+      [com.android.inputdevices,com.android.dynsystem,android,com.android.localtransport,com.android.location.fused,com.android.keychain,com.android.providers.settings,com.android.wallpaperbackup,com.android.settings,com.android.server.telecom,com.android.emulator.multidisplay]:
+        com.orbis.easybase64
+      com.android.documentsui:
+        com.orbis.easybase64
+      com.android.externalstorage:
+        com.orbis.easybase64
+      com.android.inputmethod.latin:
+        com.orbis.easybase64
+      com.orbis.easybase64:
+        com.android.externalstorage
+  queryable via uses-library:
+
+Package Changes:
+  Sequence number=18
+  User 0:
+    seq=0, package=com.android.bluetooth
+    seq=2, package=com.android.stk
+    seq=14, package=com.orbis.easybase64.test
+    seq=15, package=com.orbis.easybase64.data.test
+    seq=17, package=com.orbis.easybase64
+
+
+Dexopt state:
+  [com.orbis.easybase64]
+    path: /data/app/~~2wN51vWlTg-s8s0uzuIyVA==/com.orbis.easybase64-5-ej7OtGRT2zljrbIslWPQ==/base.apk
+      x86_64: [status=verify] [reason=install]
+
+
+Compiler stats:
+  [com.orbis.easybase64]
+     base.apk - 6588
+
+APEX session state:
+
+Active APEX packages:
+
+
+Inactive APEX packages:
+
+
+Factory APEX packages:
+
+
+Snapshot statistics
+   Unrecorded-hits: 1237  Cork-level: 0
+   Summary stats               TotBlds     TotUsed     TotCork     BigBlds    ShortLvd     TotTime     MaxTime
+          0:46         now           0           0           0           0           0           0           0
+          1:46        0:46           0           0           0           0           0           0           0
+          2:46        1:46           0           0           0           0           0           0           0
+          3:46        2:46           0           0           0           0           0           0           0
+          4:46        3:46           1         247           0           1           0          23          23
+          5:46        4:46           0           0           0           0           0           0           0
+          6:46        5:46           1         362           0           1           0         146         146
+          7:46        6:46           0           0           0           0           0           0           0
+          8:46        7:46           0           0           0           0           0           0           0
+          9:46        8:46           6        9703           0           2           0         154         103
+         57:53         now         169      139470           0          31          18        1838         276
+
+   Build times                  <= 1ms      <= 2ms      <= 5ms     <= 10ms     <= 20ms     <= 50ms    <= 100ms     > 100ms
+          0:46         now           0           0           0           0           0           0           0           0
+          1:46        0:46           0           0           0           0           0           0           0           0
+          2:46        1:46           0           0           0           0           0           0           0           0
+          3:46        2:46           0           0           0           0           0           0           0           0
+          4:46        3:46           0           0           0           0           0           1           0           0
+          5:46        4:46           0           0           0           0           0           0           0           0
+          6:46        5:46           0           0           0           0           0           0           0           1
+          7:46        6:46           0           0           0           0           0           0           0           0
+          8:46        7:46           0           0           0           0           0           0           0           0
+          9:46        8:46           3           0           1           0           0           1           0           1
+         57:53         now          98           7          17          17          11          11           3           5
+
+   Use counters                   <= 1        <= 2        <= 5       <= 10       <= 20       <= 50      <= 100       > 100
+          0:46         now           0           0           0           0           0           0           0           0
+          1:46        0:46           0           0           0           0           0           0           0           0
+          2:46        1:46           0           0           0           0           0           0           0           0
+          3:46        2:46           0           0           0           0           0           0           0           0
+          4:46        3:46           0           0           0           0           0           0           0           1
+          5:46        4:46           0           0           0           0           0           0           0           0
+          6:46        5:46           0           0           0           0           0           0           0           1
+          7:46        6:46           0           0           0           0           0           0           0           0
+          8:46        7:46           0           0           0           0           0           0           0           0
+          9:46        8:46           0           0           0           0           1           1           1           3
+         57:53         now          12           0           5           3           6          26          26          90
