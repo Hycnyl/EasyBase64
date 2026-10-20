@@ -7,7 +7,9 @@
 
 面向 Android 12 及以上系统的原生文件 Base64 编解码工具。支持任意文件、多选批处理和文件夹扫描，以流式方式处理内容，并逐文件记录结果。
 
-**开发者：Hycnyl**
+**开发者：[Hycnyl](https://github.com/Hycnyl)**
+
+**当前源码版本：1.1.0（versionCode 3）。** [1.1.0 源码更新说明](docs/UPDATE_1.1.0.md)。正式 APK 和 Release 附件将由维护者单独发布。
 
 ## 功能
 
@@ -22,6 +24,8 @@
 Base64 是编码方式，不是加密。CERTIFICATE 包装仅是文本封装，不代表内容为有效证书。
 
 ## 界面预览
+
+以下截图展示早期版本的界面布局，仅供参考；1.1.0 的“格式参数”位于“输出目录”之前。
 
 | English · 浅色 | 简体中文 · 深色 |
 | --- | --- |
@@ -46,11 +50,11 @@ sha256sum EasyBase64-1.1.0-universal.apk
 "$ANDROID_HOME/build-tools/37.0.0/apksigner" verify --verbose --print-certs EasyBase64-1.1.0-universal.apk
 ```
 
-现有版本的签名指纹和 APK 校验记录见 [测试报告](docs/TEST_RESULTS.md)。**后续覆盖更新必须使用与已安装版本相同的签名密钥**。Debug 或自行签名的 APK 可能使用不同证书，不能直接覆盖原发布版。
+历史版本的签名指纹和 APK 校验记录见 [测试报告](docs/TEST_RESULTS.md)。1.1.0 使用了新的应用 ID，**即使沿用原签名证书，也不能覆盖安装 1.0.x**。请保留旧版数据与 SAF 授权，按需为新应用重新配置。
 
 ## 使用
 
-1. 选择 **编码** 或 **解码**，再选择输出目录。
+1. 选择 **编码** 或 **解码**，先查看 **格式参数**，再选择输出目录。
 2. 点击 **添加文件** 多选输入，或选择一个文件夹；需要递归时开启 **包含子目录**。扫描文件夹前须先确定输出目录。
 3. 检查队列和 **格式参数**，移除不需要的文件，然后开始处理。
 4. 在队列中查看结果；点击文件可查看完整名称、URI、错误和尝试记录。完成后可打开输出目录。
@@ -128,6 +132,8 @@ keyPassword=YOUR_KEY_PASSWORD
 
 ## 测试与验证范围
 
+**版本范围说明：下述详细测试记录属于历史版本，不代表 1.1.0 已重新通过完整回归测试。** 1.1.0 曾完成离线构建、签名与包信息检查及有限模拟器 UI 冒烟；完整 JVM、Lint 和仪器化回归未重跑。本次 GitHub 源码推送仅校验了文件一致性，没有重新构建 APK。
+
 ```sh
 ./gradlew :core:test :data:testDebugUnitTest :app:testDebugUnitTest \
   :data:lintDebug :app:lintDebug :app:assembleDebug
@@ -141,9 +147,9 @@ keyPassword=YOUR_KEY_PASSWORD
 
 系统文件选择器测试依赖英文系统界面；应用 UI 测试会分别检查英文和简体中文。建议使用专用测试模拟器。
 
-已记录的验证包括 17 个核心 JVM 测试、3 个存储命名 JVM 测试、Android 存储与 UI 仪器测试、真实本地 SAF 提供方往返，以及**实际签名 Release APK 的安装、界面、前台服务与文件往返测试**。16 MiB 和 1 GiB 文件在 JVM 上完成流式编码、解码和独立 SHA-256 对比。App Lint 无错误，保留的警告已列入报告；App JVM 测试任务为 `NO-SOURCE`，界面测试由 Android 仪器测试承担。
+早期版本已记录的验证包括 17 个核心 JVM 测试、3 个存储命名 JVM 测试、Android 存储与 UI 仪器测试、真实本地 SAF 提供方往返，以及**实际签名 Release APK 的安装、界面、前台服务与文件往返测试**。16 MiB 和 1 GiB 文件在 JVM 上完成流式编码、解码和独立 SHA-256 对比。App Lint 无错误，保留的警告已列入报告；App JVM 测试任务为 `NO-SOURCE`，界面测试由 Android 仪器测试承担。
 
-Android 实测环境为 API 31、x86_64 模拟器，包含手机、低高度横屏、大字体和宽屏窗口。**未实测 ARM / ARM64 真机、云盘提供方、折叠屏硬件或所有 Android 版本**；JVM 大文件结果不代表手机 SAF 吞吐率。各轮测试对应的代码版本、补测范围与已知限制，以 [测试报告](docs/TEST_RESULTS.md) 和 [核心测试记录](docs/CORE_TEST_RESULTS.md) 为准。
+历史版本的 Android 实测环境为 API 31、x86_64 模拟器，包含手机、低高度横屏、大字体和宽屏窗口。**未实测 ARM / ARM64 真机、云盘提供方、折叠屏硬件或所有 Android 版本**；JVM 大文件结果不代表手机 SAF 吞吐率。各轮测试对应的代码版本、补测范围与已知限制，以 [测试报告](docs/TEST_RESULTS.md) 和 [核心测试记录](docs/CORE_TEST_RESULTS.md) 为准。
 
 ## 隐私与已知限制
 
@@ -162,6 +168,7 @@ SAF 提供方对重命名、持久授权和阻塞 I/O 取消的支持不同。�
 | `core/` | 纯 Kotlin/JVM 流式编解码、格式契约与测试 |
 | `data/` | SAF、Room 队列与尝试记录、提交、取消和清理 |
 | `app/` | Compose UI、自适应布局、系统选择器和前台服务 |
+| [1.1.0 源码更新说明](docs/UPDATE_1.1.0.md) | 应用身份迁移、版本号和验证边界 |
 | [设计文档](docs/DEVELOPMENT_DESIGN.md) | 原始开发规格 |
 | [实现决策](docs/IMPLEMENTATION_NOTES.md) | 架构和具体实现取舍 |
 | [测试报告](docs/TEST_RESULTS.md) | 已执行验证与限制 |
