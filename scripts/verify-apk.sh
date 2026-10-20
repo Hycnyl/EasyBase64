@@ -166,7 +166,7 @@ info = {
     'native_16k_page_alignment_verified': True,
     'verified_at_utc': datetime.datetime.now(datetime.timezone.utc).isoformat(),
     'jvm_tests': test_counts,
-    'developers': ['Orbis', 'Codex'], 'languages': ['zh-CN', 'en'],
+    'developers': ['Hycnyl'], 'languages': ['zh-CN', 'en'],
 }
 (verification / 'apk-info.json').write_text(json.dumps(info, indent=2, ensure_ascii=False) + '\n', encoding='utf-8')
 copy(build_log, verification / 'build.log')
