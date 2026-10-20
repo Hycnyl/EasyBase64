@@ -1,0 +1,89 @@
+name: EasyBase64 1.1.0 one-time source sync
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/source-sync-v110.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  source-sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+          persist-credentials: true
+      - name: Verify base and reconstruct exact 1.1.0 app sources
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD^)" = "d1801a258c0b3ef71fc674b6335764c8edf8305a" || { echo "Unexpected main branch baseline, refusing update"; exit 1; }
+          python3 - <<'PY'
+          from pathlib import Path
+          p = Path('.')
+          for base in ('app', 'core', 'data'):
+              for f in (p / base).rglob('*'):
+                  if f.is_file() and f.suffix in ('.kt', '.kts', '.xml', '.md', '.sh', '.pro'):
+                      s = f.read_text()
+                      t = s.replace('com.orbis.easybase64', 'com.hycnyl.easybase64').replace('com/orbis/easybase64', 'com/hycnyl/easybase64')
+                      if s != t:
+                          f.write_text(t)
+          for q in sorted(p.glob('*/src/**/com/orbis'), key=lambda x: len(x.parts), reverse=True):
+              q.rename(q.with_name('hycnyl'))
+          PY
+          xz -dc .github/source-import/production.xz | git apply --check -
+          xz -dc .github/source-import/production.xz | git apply -
+          xz -dc .github/source-import/tests.xz | git apply --check -
+          xz -dc .github/source-import/tests.xz | git apply -
+          python3 - <<'PY'
+          import hashlib
+          from pathlib import Path
+          root=Path('.')
+          files=sorted([p for module in ('app','core','data') for p in (root/module).rglob('*') if p.is_file()])
+          h=hashlib.sha256()
+          for f in files:
+              h.update(f.as_posix().encode()+b'\0'+f.read_bytes()+b'\0')
+          expected='6e126eabe5df52cef487e94deb46d76f8851d0da4d11d32f2d9f8ce699337335'
+          print('1.1.0 code and test SHA-256 manifest:',h.hexdigest())
+          assert len(files)==33 and h.hexdigest()==expected,'App/core/data source differs from independently checked 1.1.0 snapshot'
+          for name in ('README.md','README.en.md'):
+              p=Path(name);s=p.read_text()
+              note= ('**重要：1.1.0 更改应用包名为 `com.hycnyl.easybase64`，无法覆盖安装 1.0.x；设置、任务记录和文件授权不会自动迁移。**\n\n' if name=='README.md' else '**Important: v1.1.0 uses the new application ID `com.hycnyl.easybase64`. It cannot update 1.0.x in place; settings, task history and folder permissions do not migrate automatically.**\n\n')
+              s=s.replace('# EasyBase64\n','# EasyBase64\n\n'+note,1)
+              s=s.replace('Orbis and Codex','Hycnyl').replace('Orbis 与 Codex','Hycnyl').replace('Orbis 和 Codex','Hycnyl')
+              s=s.replace('com.orbis.easybase64','com.hycnyl.easybase64')
+              s=s.replace('EasyBase64-1.0.0-universal.apk','EasyBase64-1.1.0-universal.apk')
+              p.write_text(s)
+          p=Path('LICENSE')
+          p.write_text(p.read_text().replace('Orbis and Codex','Hycnyl'))
+          p=Path('scripts/verify-apk.sh')
+          s=p.read_text()
+          s=s.replace("version = os.environ.get('EXPECTED_VERSION_NAME', '1.0.0')","version = os.environ.get('EXPECTED_VERSION_NAME', '1.1.0')")
+          s=s.replace("package = 'com.orbis.easybase64'","package = 'com.hycnyl.easybase64'")
+          s=s.replace("versionCode'] == 1","versionCode'] == 3")
+          s=s.replace("versionCode='1'","versionCode='3'")
+          p.write_text(s)
+          Path('docs/UPDATE_1.1.0.md').write_text("""# EasyBase64 1.1.0 / 源码更新说明
+
+          1.1.0 更新应用 ID 与命名空间为 `com.hycnyl.easybase64`；1.0.x 为 `com.orbis.easybase64`。因此新版属于独立安装，旧版本的偏好设置、任务记录与 SAF 文件夹授权不会自动迁移。
+          
+          This version uses application ID and namespace `com.hycnyl.easybase64`. It is a separate Android installation and cannot update 1.0.x in place. Preferences, task history, and persisted SAF grants do not automatically transfer.
+          
+          版本：versionName `1.1.0`、versionCode `3`；Android 12+。主界面将格式参数移动到输出目录之前，并调整部分中英文文案。
+          
+          The source snapshot includes Android app, core and data modules and their associated tests. The matching signed APK and release attachments will be published separately.
+          
+          This source-only push does not assert that a fresh comprehensive test suite has been run. No signing keystore or private credentials are included.
+          """.replace('\n          ','\n'), encoding='utf-8')
+          PY
+          rm -f .github/source-import/production.xz .github/source-import/tests.xz .github/workflows/source-sync-v110.yml
+          rmdir .github/source-import .github/workflows .github 2>/dev/null || true
+          git add -A
+          git diff --cached --check
+          git diff --cached --name-only
+          if ! git diff --cached --quiet; then
+             git -c user.name="github-actions[bot]" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" commit -m "feat: update EasyBase64 source to 1.1.0"
+             git push origin HEAD:main
+          fi
