@@ -5,14 +5,14 @@ val deliverySigning = Properties().apply {
     if (file.exists()) file.inputStream().use(::load)
 }
 android {
-    namespace = "com.orbis.easybase64"
+    namespace = "com.hycnyl.easybase64"
     compileSdk { version = release(37) { minorApiLevel = 2 } }
     defaultConfig {
-        applicationId = "com.orbis.easybase64"
+        applicationId = "com.hycnyl.easybase64"
         minSdk = 31
         targetSdk = 36
-        versionCode = 1
-        versionName = "1.0.0"
+        versionCode = 3
+        versionName = "1.1.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
     signingConfigs {
@@ -58,4 +58,5 @@ dependencies {
     androidTestImplementation(platform("androidx.compose:compose-bom:2026.09.00"))
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
     androidTestImplementation("androidx.test.uiautomator:uiautomator:2.3.0")
+    androidTestImplementation("androidx.test.espresso:espresso-intents:3.5.0")
 }

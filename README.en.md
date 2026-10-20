@@ -1,10 +1,13 @@
 # EasyBase64
 
+**Important: v1.1.0 uses the new application ID `com.hycnyl.easybase64`. It cannot update 1.0.x in place; settings, task history and folder permissions do not migrate automatically.**
+
+
 English · [简体中文](README.md)
 
 A native file Base64 encoder and decoder for Android 12 and later. Process arbitrary files, select multiple inputs or scan a folder, and inspect each result. File contents are converted as streams.
 
-**Developers: Orbis and Codex**
+**Developers: Hycnyl**
 
 ## Features
 
@@ -31,16 +34,16 @@ More images are available in [docs/screenshots](docs/screenshots). These are emu
 ## Install
 
 1. Open this repository's **Releases** and choose a version.
-2. Download `EasyBase64-1.0.0-universal.apk`, or the corresponding `EasyBase64-<version>-universal.apk`.
+2. Download `EasyBase64-1.1.0-universal.apk`, or the corresponding `EasyBase64-<version>-universal.apk`.
 3. Open the APK on your Android device. If prompted, allow your browser or file manager to install apps.
 
-Requires **Android 12 / API 31 or later**. One universal APK includes the required libraries for `arm64-v8a`, `armeabi-v7a`, `x86` and `x86_64`; no separate v8a / v7a package selection is needed. The application ID is `com.orbis.easybase64`.
+Requires **Android 12 / API 31 or later**. One universal APK includes the required libraries for `arm64-v8a`, `armeabi-v7a`, `x86` and `x86_64`; no separate v8a / v7a package selection is needed. The application ID is `com.hycnyl.easybase64`.
 
 Before installing, compare the APK's SHA-256 with the checksum file for that release. With Android SDK Build Tools installed, you can also verify its signature:
 
 ```sh
-sha256sum EasyBase64-1.0.0-universal.apk
-"$ANDROID_HOME/build-tools/37.0.0/apksigner" verify --verbose --print-certs EasyBase64-1.0.0-universal.apk
+sha256sum EasyBase64-1.1.0-universal.apk
+"$ANDROID_HOME/build-tools/37.0.0/apksigner" verify --verbose --print-certs EasyBase64-1.1.0-universal.apk
 ```
 
 The existing release's certificate fingerprint and APK verification records are in the [test report](docs/TEST_RESULTS.md). **An in-place update must use the same signing key as the installed version.** Debug or self-signed builds may use a different certificate and cannot directly replace the original release.
@@ -168,6 +171,6 @@ This release does not include a text workspace, whole-file preview, share target
 
 ## License
 
-The project's original code is licensed under the [MIT License](LICENSE). Copyright © 2026 Orbis and Codex.
+The project's original code is licensed under the [MIT License](LICENSE). Copyright © 2026 Hycnyl.
 
 Third-party dependencies retain their respective licenses and copyright notices. See the [third-party notices](docs/THIRD_PARTY_NOTICES.md) and included [Apache License, Version 2.0](docs/licenses/Apache-2.0.txt) for the relevant components.

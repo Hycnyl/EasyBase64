@@ -14,8 +14,8 @@ from zipfile import ZIP_DEFLATED, ZipFile
 root = Path(os.environ['EASYBASE64_PROJECT_DIR'])
 delivery = Path(os.environ.get('EASYBASE64_DELIVERY_DIR', root.parent / 'deliverables'))
 verification = root / 'docs/verification'
-version = os.environ.get('EXPECTED_VERSION_NAME', '1.0.0')
-package = 'com.orbis.easybase64'
+version = os.environ.get('EXPECTED_VERSION_NAME', '1.1.0')
+package = 'com.hycnyl.easybase64'
 expected_abis = {'arm64-v8a', 'armeabi-v7a', 'x86', 'x86_64'}
 
 def require(condition, message):
@@ -78,11 +78,11 @@ for variant in ('release', 'debug'):
     elements = metadata['elements']
     require(len(elements) == 1 and not elements[0].get('filters'), f'{variant} output is split or filtered')
     require(metadata['applicationId'] == package, f'{variant} package mismatch')
-    require(elements[0]['versionCode'] == 1 and elements[0]['versionName'] == version, f'{variant} version mismatch')
+    require(elements[0]['versionCode'] == 3 and elements[0]['versionName'] == version, f'{variant} version mismatch')
     apk = directory / elements[0]['outputFile']
     require(apk.is_file() and apk.stat().st_mtime >= latest_source, f'{variant} APK is older than main sources/configuration; rebuild first')
     badging = run('aapt2', 'dump', 'badging', apk)
-    require(re.search(r"package: name='" + re.escape(package) + r"'.*versionCode='1'.*versionName='" + re.escape(version) + "'", badging), f'{variant} manifest identity mismatch')
+    require(re.search(r"package: name='" + re.escape(package) + r"'.*versionCode='3'.*versionName='" + re.escape(version) + "'", badging), f'{variant} manifest identity mismatch')
     require(re.search(r"^(?:minSdkVersion|sdkVersion):'31'$", badging, re.M) and "targetSdkVersion:'36'" in badging, f'{variant} SDK bounds mismatch')
     require('android.permission.INTERNET' not in badging, f'{variant} unexpectedly requests INTERNET')
     require('android.permission.MANAGE_EXTERNAL_STORAGE' not in badging, f'{variant} unexpectedly requests broad storage access')

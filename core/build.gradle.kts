@@ -10,7 +10,7 @@ tasks.test { maxHeapSize = "256m" }
 tasks.register<JavaExec>("largeFileBenchmark") {
     dependsOn(tasks.testClasses)
     classpath = sourceSets.test.get().runtimeClasspath
-    mainClass.set("com.orbis.easybase64.core.LargeFileBenchmark")
+    mainClass.set("com.hycnyl.easybase64.core.LargeFileBenchmark")
     maxHeapSize = "256m"
     args(layout.buildDirectory.dir("large-file-benchmark").get().asFile.absolutePath)
 }

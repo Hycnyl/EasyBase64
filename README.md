@@ -1,10 +1,13 @@
 # EasyBase64
 
+**重要：1.1.0 更改应用包名为 `com.hycnyl.easybase64`，无法覆盖安装 1.0.x；设置、任务记录和文件授权不会自动迁移。**
+
+
 [English](README.en.md) · 简体中文
 
 面向 Android 12 及以上系统的原生文件 Base64 编解码工具。支持任意文件、多选批处理和文件夹扫描，以流式方式处理内容，并逐文件记录结果。
 
-**开发者：Orbis 和 Codex**
+**开发者：Hycnyl**
 
 ## 功能
 
@@ -31,16 +34,16 @@ Base64 是编码方式，不是加密。CERTIFICATE 包装仅是文本封装，�
 ## 安装
 
 1. 打开本仓库的 **Releases**，选择所需版本。
-2. 下载 `EasyBase64-1.0.0-universal.apk`，或对应版本的 `EasyBase64-<版本>-universal.apk`。
+2. 下载 `EasyBase64-1.1.0-universal.apk`，或对应版本的 `EasyBase64-<版本>-universal.apk`。
 3. 在 Android 设备上打开 APK；若系统提示，允许当前浏览器或文件管理器安装应用。
 
-需要 **Android 12 / API 31 或更高版本**。一个 universal APK 同时包含 `arm64-v8a`、`armeabi-v7a`、`x86` 和 `x86_64` 所需库，无需另选 v8a / v7a 安装包。包名为 `com.orbis.easybase64`。
+需要 **Android 12 / API 31 或更高版本**。一个 universal APK 同时包含 `arm64-v8a`、`armeabi-v7a`、`x86` 和 `x86_64` 所需库，无需另选 v8a / v7a 安装包。包名为 `com.hycnyl.easybase64`。
 
 安装前可将 APK 的 SHA-256 与对应 Release 的校验文件对照。具备 Android SDK Build Tools 时，也可检查签名：
 
 ```sh
-sha256sum EasyBase64-1.0.0-universal.apk
-"$ANDROID_HOME/build-tools/37.0.0/apksigner" verify --verbose --print-certs EasyBase64-1.0.0-universal.apk
+sha256sum EasyBase64-1.1.0-universal.apk
+"$ANDROID_HOME/build-tools/37.0.0/apksigner" verify --verbose --print-certs EasyBase64-1.1.0-universal.apk
 ```
 
 现有版本的签名指纹和 APK 校验记录见 [测试报告](docs/TEST_RESULTS.md)。**后续覆盖更新必须使用与已安装版本相同的签名密钥**。Debug 或自行签名的 APK 可能使用不同证书，不能直接覆盖原发布版。
@@ -168,6 +171,6 @@ SAF 提供方对重命名、持久授权和阻塞 I/O 取消的支持不同。�
 
 ## 许可证
 
-本项目原创代码采用 [MIT License](LICENSE)。Copyright © 2026 Orbis and Codex。
+本项目原创代码采用 [MIT License](LICENSE)。Copyright © 2026 Hycnyl。
 
 第三方依赖保留各自的许可证与版权声明；相关组件使用的 [Apache License, Version 2.0](docs/licenses/Apache-2.0.txt) 与声明见 [第三方声明](docs/THIRD_PARTY_NOTICES.md)。
