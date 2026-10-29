@@ -2,7 +2,7 @@
 
 [English](README.en.md) · 简体中文
 
-面向 **Android 12 及以上**的文件 Base64 编解码工具，由 [Hycnyl](https://github.com/Hycnyl) 开发。[下载 universal APK](https://github.com/Hycnyl/EasyBase64/releases/latest)，无需区分 CPU 架构。
+面向 **Android 12 及以上**的文件 Base64 批量编解码工具，由 [Hycnyl](https://github.com/Hycnyl) 开发。[下载 universal APK](https://github.com/Hycnyl/EasyBase64/releases/latest)，无需区分 CPU 架构。
 
 ## 功能
 
@@ -15,8 +15,8 @@
 
 ## 版本变化
 
-- [**1.1.0**](https://github.com/Hycnyl/EasyBase64/releases/tag/v1.1.0-public)：格式参数移至输出目录之前；更新设置页、开发者及 GitHub 链接和双语参数文案。包名改为 `com.hycnyl.easybase64`，与 1.0.x 独立安装，设置、任务和文件授权不会自动迁移。
-- [**1.0.0**](https://github.com/Hycnyl/EasyBase64/releases/tag/v1.0.0-public)：首个公开版本，提供文件及文件夹批量编解码、格式参数和任务管理。
+- [**1.1.0**](https://github.com/Hycnyl/EasyBase64/releases/tag/v1.1.0-public)：优化了使用体验，格式参数移至输出目录之前；更新设置页、开发者及 GitHub 链接和双语参数文案。包名改为 `com.hycnyl.easybase64`，与 1.0.x 独立安装，设置、任务和文件授权不会自动迁移。
+- [**1.0.0**](https://github.com/Hycnyl/EasyBase64/releases/tag/v1.0.0-public)：首个公开版本，提供基本的文件及文件夹批量编解码、格式参数和任务管理。
 
 ## 引用与致谢
 
