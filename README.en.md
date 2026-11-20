@@ -10,6 +10,7 @@ A file Base64 encoder and decoder for **Android 12 and later**, developed by [Hy
 - **Encoding options:** Standard / URL-safe alphabets, trailing padding (`=`), no wrapping or 64 / 76-character lines, LF / CRLF, a final newline, and Windows `certutil`-style CERTIFICATE wrapping.
 - **Decoding options:** independently allow ASCII whitespace, accept CERTIFICATE wrapping and accept omitted padding, with full-input validation.
 - **Files and tasks:** stream file conversions into a separate output subfolder for each batch, with automatic numbering for duplicate names. View per-file status, progress and errors; cancel or retry manually.
+- **Text conversion:** tap the text icon to the left of Settings, type or paste text, and convert between UTF-8 text and standard Base64. You can copy the result.
 - **Bilingual interface:** English / Simplified Chinese, dynamic system colors, light / dark themes and adaptive layouts.
 - **Local processing:** access files through the system picker, with no account, ads, telemetry or Internet permission.
 

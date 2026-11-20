@@ -71,6 +71,7 @@ fun EasyBase64App(
     val colors = if (dark) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
     val state by repository.state.collectAsStateWithLifecycle()
     var draft by remember { mutableStateOf(loadOptions(prefs)) }
+    var textToolOpen by rememberSaveable { mutableStateOf(false) }
     var settingsOpen by rememberSaveable { mutableStateOf(false) }
     var optionsOpen by rememberSaveable { mutableStateOf(false) }
     var folderOpen by rememberSaveable { mutableStateOf(false) }
@@ -145,6 +146,9 @@ fun EasyBase64App(
                         Column(Modifier.weight(1f)) {
                             Text("EasyBase64", style = MaterialTheme.typography.titleLarge, fontWeight = FontWeight.Bold, modifier = Modifier.testTag("app_title"))
                             Text(tx.t("FILES, SIMPLY CONVERTED", "让文件转换更简单"), style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                        }
+                        IconButton(onClick = { textToolOpen = true }, modifier = Modifier.testTag("text_tool_button")) {
+                            Icon(Icons.Default.TextFields, tx.t("Text Base64", "文本编解码"))
                         }
                         IconButton(onClick = { settingsOpen = true }, modifier = Modifier.testTag("settings_button")) {
                             Icon(Icons.Default.Tune, tx.t("Settings", "设置"))
@@ -270,6 +274,7 @@ fun EasyBase64App(
                     OptionsPanel(options, !locked && !frozenOptions, tx, updateOptions)
                 }
             }
+            if (textToolOpen) TextCodecDialog(tx, onClose = { textToolOpen = false })
             if (settingsOpen) SettingsDialog(tx, language, theme,
                 onLanguage = { language = it; prefs.edit().putString("language", it).apply() },
                 onTheme = { theme = it; prefs.edit().putString("theme", it).apply() },
@@ -549,7 +554,7 @@ private fun DetailValue(label: String, value: String) {
 }
 
 @Composable
-private fun SheetDialog(title: String, tx: UiText, onClose: () -> Unit, tag: String, content: @Composable ColumnScope.() -> Unit) {
+internal fun SheetDialog(title: String, tx: UiText, onClose: () -> Unit, tag: String, content: @Composable ColumnScope.() -> Unit) {
     Dialog(onDismissRequest = onClose, properties = DialogProperties(usePlatformDefaultWidth = false)) {
         Surface(Modifier.widthIn(max = 600.dp).fillMaxWidth(0.94f).fillMaxHeight(0.88f).testTag(tag), shape = RoundedCornerShape(28.dp), color = MaterialTheme.colorScheme.surface) {
             Column {
@@ -585,7 +590,7 @@ private fun SettingsDialog(tx: UiText, language: String, theme: String, onLangua
             Icon(Icons.Default.SwapHoriz, null, Modifier.size(36.dp), tint = MaterialTheme.colorScheme.primary)
             Column {
                 Text("EasyBase64", style = MaterialTheme.typography.titleLarge, fontWeight = FontWeight.Bold)
-                Text("1.1.0", style = MaterialTheme.typography.bodySmall)
+                Text("1.2.0", style = MaterialTheme.typography.bodySmall)
             }
         }
         SettingsLink(tx.t("Developer", "开发者"), "Hycnyl", "https://github.com/Hycnyl", Icons.Default.Person, "developer_link", "developer_icon", tx)

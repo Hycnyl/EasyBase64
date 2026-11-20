@@ -2,6 +2,7 @@ package com.hycnyl.easybase64
 
 import android.app.Activity
 import android.app.Instrumentation
+import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
 import android.content.pm.ActivityInfo
@@ -15,6 +16,8 @@ import androidx.compose.ui.test.assertIsEnabled
 import androidx.compose.ui.test.assertIsOn
 import androidx.compose.ui.test.assertIsNotEnabled
 import androidx.compose.ui.test.assertTextEquals
+import androidx.compose.ui.test.hasTestTag
+import androidx.compose.ui.test.hasText
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onAllNodesWithTag
 import androidx.compose.ui.test.onAllNodesWithText
@@ -23,6 +26,7 @@ import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performScrollTo
 import androidx.compose.ui.test.performSemanticsAction
+import androidx.compose.ui.test.performTextReplacement
 import androidx.test.espresso.intent.Intents
 import androidx.test.espresso.intent.matcher.IntentMatchers.hasAction
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -63,6 +67,38 @@ class MainActivityUiTest {
         saveScreenshot("phone-english-light")
         compose.onNodeWithTag("settings_button").performClick()
         compose.onNodeWithTag("developer_link").performScrollTo().assertTextEquals("Hycnyl")
+    }
+
+    @Test fun textToolConvertsAndCopiesWithoutStartingAFileBatch() {
+        val tool = compose.onNodeWithTag("text_tool_button").assertIsDisplayed()
+        val settings = compose.onNodeWithTag("settings_button").assertIsDisplayed()
+        assertTrue(tool.fetchSemanticsNode().boundsInRoot.right <= settings.fetchSemanticsNode().boundsInRoot.left)
+        tool.performClick()
+
+        val plain = "你好 👋\nEasyBase64"
+        val encoded = "5L2g5aW9IPCfkYsKRWFzeUJhc2U2NA=="
+        val input = compose.onNodeWithTag("text_input")
+        fun convert(text: String, action: String, expected: String) {
+            input.performScrollTo().performTextReplacement(text)
+            compose.onNodeWithTag(action).performScrollTo().performClick()
+            compose.waitUntil(10_000) {
+                compose.onAllNodes(hasTestTag("text_result") and hasText(expected)).fetchSemanticsNodes().isNotEmpty()
+            }
+        }
+        convert(plain, "text_encode", encoded)
+        compose.onNodeWithTag("text_copy").performScrollTo().performClick()
+        compose.activityRule.scenario.onActivity { activity ->
+            val clipboard = activity.getSystemService(ClipboardManager::class.java)
+            assertEquals(encoded, clipboard.primaryClip?.getItemAt(0)?.text?.toString())
+        }
+        convert(encoded, "text_decode", plain)
+
+        input.performScrollTo().performTextReplacement("/w==") // Valid Base64 for a single non-UTF-8 byte.
+        compose.onNodeWithTag("text_decode").performScrollTo().performClick()
+        compose.waitUntil(10_000) { compose.onAllNodesWithTag("text_error").fetchSemanticsNodes().isNotEmpty() }
+        compose.onNodeWithTag("text_result").assertDoesNotExist()
+        closeDialog(zh = false)
+        compose.onNodeWithTag("start_button").assertIsNotEnabled()
     }
 
     @Test fun languageAndThemeSurviveActivityRecreation() {
