@@ -14,7 +14,9 @@ from zipfile import ZIP_DEFLATED, ZipFile
 root = Path(os.environ['EASYBASE64_PROJECT_DIR'])
 delivery = Path(os.environ.get('EASYBASE64_DELIVERY_DIR', root.parent / 'deliverables'))
 verification = root / 'docs/verification'
-version = os.environ.get('EXPECTED_VERSION_NAME', '1.1.0')
+app_config = (root / 'app/build.gradle.kts').read_text(encoding='utf-8')
+version = os.environ.get('EXPECTED_VERSION_NAME') or re.search(r'^\s*versionName\s*=\s*"([^"]+)"', app_config, re.M).group(1)
+version_code = int(re.search(r'^\s*versionCode\s*=\s*(\d+)', app_config, re.M).group(1))
 package = 'com.hycnyl.easybase64'
 expected_abis = {'arm64-v8a', 'armeabi-v7a', 'x86', 'x86_64'}
 
@@ -78,11 +80,11 @@ for variant in ('release', 'debug'):
     elements = metadata['elements']
     require(len(elements) == 1 and not elements[0].get('filters'), f'{variant} output is split or filtered')
     require(metadata['applicationId'] == package, f'{variant} package mismatch')
-    require(elements[0]['versionCode'] == 3 and elements[0]['versionName'] == version, f'{variant} version mismatch')
+    require(elements[0]['versionCode'] == version_code and elements[0]['versionName'] == version, f'{variant} version mismatch')
     apk = directory / elements[0]['outputFile']
     require(apk.is_file() and apk.stat().st_mtime >= latest_source, f'{variant} APK is older than main sources/configuration; rebuild first')
     badging = run('aapt2', 'dump', 'badging', apk)
-    require(re.search(r"package: name='" + re.escape(package) + r"'.*versionCode='3'.*versionName='" + re.escape(version) + "'", badging), f'{variant} manifest identity mismatch')
+    require(re.search(r"package: name='" + re.escape(package) + rf"'.*versionCode='{version_code}'.*versionName='" + re.escape(version) + "'", badging), f'{variant} manifest identity mismatch')
     require(re.search(r"^(?:minSdkVersion|sdkVersion):'31'$", badging, re.M) and "targetSdkVersion:'36'" in badging, f'{variant} SDK bounds mismatch')
     require('android.permission.INTERNET' not in badging, f'{variant} unexpectedly requests INTERNET')
     require('android.permission.MANAGE_EXTERNAL_STORAGE' not in badging, f'{variant} unexpectedly requests broad storage access')
@@ -161,7 +163,7 @@ info = {
     'sha256': digest(reports['release']['apk']),
     'native_abis': reports['release']['abis'],
     'min_sdk': 31, 'target_sdk': 36, 'compile_sdk': '37.2',
-    'app_id': package, 'version_name': version, 'version_code': 1,
+    'app_id': package, 'version_name': version, 'version_code': version_code,
     'certificate_sha256': certificate_digest,
     'native_16k_page_alignment_verified': True,
     'verified_at_utc': datetime.datetime.now(datetime.timezone.utc).isoformat(),
