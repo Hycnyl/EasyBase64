@@ -1,0 +1,68 @@
+name: Sign verified EasyBase64 1.2.0 APK
+on:
+  push:
+    branches: [sign/easybase64-1.2.0]
+    paths:
+      - '.github/workflows/sign-easybase64-1.2.0.yml'
+      - 'scripts/SignRelease.java'
+      - 'release-input/EasyBase64-1.2.0-unsigned.apk'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  sign:
+    if: github.repository == 'Hycnyl/EasyBase64' && github.ref == 'refs/heads/sign/easybase64-1.2.0'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    env:
+      INPUT_APK: release-input/EasyBase64-1.2.0-unsigned.apk
+      OUTPUT_APK: dist/EasyBase64-1.2.0-universal.apk
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+
+      - name: Check the tested unsigned APK
+        run: |
+          set -eu
+          echo "fddf2c4804369ba758a7220dd89f19efebf637be0c789514304bf12805c6b5da  $INPUT_APK" | sha256sum -c -
+          sdk_tools=$(find "$ANDROID_HOME/build-tools" -mindepth 1 -maxdepth 1 -type d | sort -V | tail -1)
+          test -x "$sdk_tools/apksigner"
+          echo "SDK_TOOLS=$sdk_tools" >> "$GITHUB_ENV"
+          "$sdk_tools/aapt2" dump badging "$INPUT_APK" > "$RUNNER_TEMP/package.txt"
+          grep -F "package: name='com.hycnyl.easybase64' versionCode='4' versionName='1.2.0'" "$RUNNER_TEMP/package.txt"
+          mkdir -p dist
+
+      - name: Sign using the repository Actions secrets
+        env:
+          EASYBASE64_JKS_BASE64: ${{ secrets.EASYBASE64_JKS_BASE64 }}
+          EASYBASE64_STORE_PASSWORD: ${{ secrets.EASYBASE64_STORE_PASSWORD }}
+        run: |
+          set -eu
+          umask 077
+          java scripts/SignRelease.java "$SDK_TOOLS/apksigner" "$INPUT_APK" "$OUTPUT_APK"
+
+      - name: Verify the original release certificate and APK signature
+        run: |
+          set -eu
+          expected=95782d3e7c18c5087e78540f08263cf4b23d4f1b18f1b81f1831fe8fc092adac
+          "$SDK_TOOLS/apksigner" verify --verbose --print-certs "$OUTPUT_APK" > dist/APK-SIGNATURE.txt
+          grep -Fx 'Number of signers: 1' dist/APK-SIGNATURE.txt
+          grep -Eq '^Verified using v2 scheme .*: true$' dist/APK-SIGNATURE.txt
+          test "$(awk '/certificate SHA-256 digest:/{print $NF}' dist/APK-SIGNATURE.txt | sort -u)" = "$expected"
+          "$SDK_TOOLS/zipalign" -c -P 16 4 "$OUTPUT_APK"
+          cd dist
+          sha256sum EasyBase64-1.2.0-universal.apk > SHA256SUMS-APK.txt
+
+      - name: Save the verified universal APK
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: EasyBase64-1.2.0-signed
+          path: |
+            dist/EasyBase64-1.2.0-universal.apk
+            dist/APK-SIGNATURE.txt
+            dist/SHA256SUMS-APK.txt
+          if-no-files-found: error
+          retention-days: 14
